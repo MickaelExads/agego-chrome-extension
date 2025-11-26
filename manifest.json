@@ -1,0 +1,64 @@
+{
+  "name": "MailHog OTP Autofill",
+  "description": "Fetch OTP from local MailHog and autofill Angular OTP inputs automatically. Includes auto-polling, options UI, and popup controls.",
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "permissions": [
+    "storage",
+    "alarms",
+    "scripting",
+    "webNavigation",
+    "sidePanel"
+  ],
+  "host_permissions": [
+    "http://127.0.0.1:8025/*",
+    "https://myapi.agego.test:8443/*",
+    "https://localhost:8443/*",
+    "https://127.0.0.1/*",
+    "http://127.0.0.1/*",
+    "https://localhost:4200/*",
+    "http://localhost:4200/*",
+    "http://localhost:63342/*",
+    "https://localhost:63342/*",
+    "https://sandbox.exads.rocks/*",
+    "https://syndication.exads.rocks/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "MailHog OTP"
+  },
+  "side_panel": {
+    "default_path": "popup.html"
+  },
+  "commands": {
+    "fill-otp": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+O"
+      },
+      "description": "Fetch OTP from MailHog and autofill inputs"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://myapi.agego.test:8443/*",
+        "https://localhost:8443/*",
+        "https://127.0.0.1/*",
+        "http://127.0.0.1/*",
+        "https://localhost:4200/*",
+        "http://localhost:4200/*",
+        "http://localhost:63342/*",
+        "https://localhost:63342/*",
+        "https://sandbox.exads.rocks/*",
+        "https://syndication.exads.rocks/*",
+        "*://*/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "all_frames": true
+    }
+  ]
+}
