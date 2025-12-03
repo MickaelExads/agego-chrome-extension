@@ -3,12 +3,17 @@
   "description": "Fetch OTP from local MailHog and autofill Angular OTP inputs automatically. Includes auto-polling, options UI, and popup controls.",
   "version": "1.0.0",
   "manifest_version": 3,
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{12345678-1111-1111-1111-123456789101}",
+      "strict_min_version": "109.0"
+    }
+  },
   "permissions": [
     "storage",
     "alarms",
     "scripting",
-    "webNavigation",
-    "sidePanel"
+    "webNavigation"
   ],
   "host_permissions": [
     "http://127.0.0.1:8025/*",
@@ -24,13 +29,11 @@
     "https://syndication.exads.rocks/*"
   ],
   "background": {
-    "service_worker": "background.js"
+    "scripts": ["background.js"]
   },
   "action": {
-    "default_title": "MailHog OTP"
-  },
-  "side_panel": {
-    "default_path": "popup.html"
+    "default_title": "MailHog OTP",
+    "default_popup": "popup.html"
   },
   "commands": {
     "fill-otp": {
